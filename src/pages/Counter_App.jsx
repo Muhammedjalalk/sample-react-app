@@ -22,7 +22,7 @@ return(
         display:"flex",
         justifyContent:"center",
         alignItems:"center",
-        height:"100vh",
+        height:"200vh",
         backgroundColor:"#f2f2f2"
     }}>
 
