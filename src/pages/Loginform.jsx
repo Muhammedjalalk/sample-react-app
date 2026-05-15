@@ -1,25 +1,25 @@
-import { useActionData } from "react-router-dom";
+import { useState } from "react";
 
 
-function Login(){
+function LoginForm(){
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
-    const [error,setError]=useState("");
+    const [errors,setError]=useState({});
 
     const handleSubmit=(e) => {
         e.preventDefault();
-        let newErrors={};
+    let newErrors={};
 
-        if (email==""){
+        if (email=== ""){
 
             newErrors.email="Email is Required ";
                 }
-                else if(!email.include("@"))
+                else if(!email.includes("@"))
                 {
                     newErrors.email="Enter valid Email";
                 }
 //  password Validations 
-if (password=="")
+if (password === "")
 {
     newErrors.password="Password is Required";
 }
@@ -33,17 +33,50 @@ if (Object.keys(newErrors).length==0) {
 }  };
 
 return(
+    <div 
+    style={{
+        display:"flex",
+        justifyContent:"center",
+        alignItems:"center",
+        height:"100vh",
+        backgroundColor:"#f2f2f2"
+
+    }}>
+        <div style={{
+            padding:"30px",
+            backgroundColor:"white",
+            borderRadius:"10px",
+            boxShadow:"0px 0px 10px gray",
+            width:"300px"
+
+        }}>
+           
     <div style={{padding:"20px"}}>
         <h1>Login Form</h1>
 
         <form onSubmit={handleSubmit}>
             <div>
                 <input type="text" placeholder="Enter Email" value={email} onChange={(e) => setEmail(e.target.value)}
-                />
+                /> 
+                <p style={{color:"red"}}>
+                {errors.email}
+                </p>
             </div>
+            <div>
+                <input type="password" placeholder="Enter password" value={password} onChange={(e) => setPassword(e.target.value)}
+                /> 
+                <p style={{color:"red"}}>
+                {errors.password}
+                </p>
+            </div>
+            <button  type="submit">
+                Login</button>
         </form>
 
     </div>
+    </div>
+    </div>
 
-)
+);
 }
+export default LoginForm;
